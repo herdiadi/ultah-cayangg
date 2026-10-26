@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Nandia Della Putri 💖 | From Adi</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Playfair Display, Montserrat, Caveat & Pacifico -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Montserrat:wght@300;400;500;600;700&family=Pacifico&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            rosegold: '#f3abb6',
+            dustypink: '#f7cad0',
+            softpink: '#ffb3c1',
+            blushpink: '#fff0f3',
+            darkmagenta: '#590d22',
+            deeprose: '#a4133c',
+            cuteblush: '#ffccd5'
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'serif'],
+            sans: ['Montserrat', 'sans-serif'],
+            cursive: ['Caveat', 'cursive'],
+            cute: ['Pacifico', 'cursive']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Gradient Background & Soft Aesthetic Theme */
+    body {
+      background: linear-gradient(135deg, #2b0b1e 0%, #590d22 35%, #800f2f 70%, #38040e 100%);
+      background-attachment: fixed;
+      font-family: 'Montserrat', sans-serif;
+      overflow-x: hidden;
+      color: #fff;
+    }
+
+    /* Floating Particles Canvas */
+    #particles-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Glassmorphism Cards */
+    .glass-card {
+      background: rgba(255, 240, 243, 0.12);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1.5px solid rgba(255, 179, 193, 0.3);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35), inset 0 0 15px rgba(255, 204, 213, 0.15);
+    }
+
+    /* Floating Music Spin */
+    @keyframes spinSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .spin-slow {
+      animation: spinSlow 6s linear infinite;
+    }
+
+    /* Cute Gift Box Shake Animation */
+    @keyframes floatCute {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(2deg); }
+    }
+    .gift-float {
+      animation: floatCute 3s ease-in-out infinite;
+    }
+
+    /* Custom Cute Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #2b0b1e;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #ffb3c1;
+      border-radius: 4px;
+    }
+
+    /* Polaroid Styles */
+    .polaroid {
+      background-color: #ffffff;
+      padding: 12px 12px 24px 12px;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .polaroid:hover {
+      transform: scale(1.05) rotate(0deg) !important;
+      z-index: 20;
+      box-shadow: 0 18px 35px rgba(255, 179, 193, 0.5);
+    }
+
+    /* Cute Glow Text */
+    .glow-text {
+      text-shadow: 0 0 12px rgba(255, 179, 193, 0.8), 0 0 24px rgba(243, 171, 182, 0.6);
+    }
+
+    /* Floating Cute Badges */
+    .pulse-badge {
+      animation: pulseGlow 2s infinite;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255, 179, 193, 0.6); }
+      50% { box-shadow: 0 0 0 12px rgba(255, 179, 193, 0); }
+    }
+  </style>
+</head>
+<body class="min-h-screen relative flex flex-col justify-between items-center text-gray-100 selection:bg-softpink selection:text-darkmagenta">
+
+  <!-- Floating Hearts & Sparkles Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Audio Controller Button -->
+  <div class="fixed top-4 right-4 z-50">
+    <button id="musicToggle" onclick="toggleAudio()" class="flex items-center gap-2 bg-gradient-to-r from-softpink via-rosegold to-cuteblush text-darkmagenta px-4 py-2.5 rounded-full shadow-lg border border-white/40 font-bold text-xs md:text-sm hover:scale-105 active:scale-95 transition duration-300 pulse-badge">
+      <i id="musicIcon" class="fa-solid fa-music text-base"></i>
+      <span id="musicText">Play Music 🎵</span>
+    </button>
+  </div>
+  
+  <!-- Audio File -->
+  <!-- CARA GANTI LAGU: Ganti 'bg-music.mp3' dengan nama file lagu lokal Anda atau link URL mp3 -->
+  <audio id="bgMusic" loop preload="auto">
+    <source src="bg-music.mp3" type="audio/mpeg">
+    <!-- Fallback MP3 jika file local belum dimasukkan -->
+    <source src="audio/Weswey - 'kesima (Official Video) [UmBnFK0_Xbs].mp3" type="audio/mpeg">
+    Browser kamu tidak mendukung audio element.
+  </audio>
+
+  <!-- Main Container -->
+  <main class="w-full max-w-3xl px-4 py-8 z-10 my-auto flex flex-col items-center">
+
+    <!-- SEKSI 1: COUNTDOWN TIMER -->
+    <section id="section-1" class="w-full flex flex-col items-center text-center transition-all duration-700">
+      <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-softpink/20 border border-softpink/40 text-blushpink text-xs uppercase tracking-widest font-semibold mb-4 animate-bounce">
+        🎀 Special Day Announcement 🎀
+      </span>
+      <h1 class="font-cute text-3xl sm:text-5xl md:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-blushpink via-softpink to-rosegold glow-text mb-3 leading-relaxed">
+        Her Special Day is Coming ✨
+      </h1>
+      <p class="text-xs sm:text-sm md:text-base text-gray-200 max-w-md font-light mb-8">
+        Sesuatu yang sangat manis sedang menunggumu cantikk, <span class="font-bold text-softpink">Nandia Della Putri</span>... 💖
+      </p>
+
+      <!-- Countdown Boxes -->
+      <div id="countdown" class="grid grid-cols-4 gap-2.5 sm:gap-4 w-full max-w-md mb-10">
+        <div class="glass-card rounded-2xl p-3 sm:p-4 flex flex-col items-center">
+          <span id="days" class="font-serif text-2xl sm:text-4xl font-bold text-softpink">00</span>
+          <span class="text-[10px] sm:text-xs text-gray-300 uppercase tracking-wider mt-1">Hari</span>
+        </div>
+        <div class="glass-card rounded-2xl p-3 sm:p-4 flex flex-col items-center">
+          <span id="hours" class="font-serif text-2xl sm:text-4xl font-bold text-softpink">00</span>
+          <span class="text-[10px] sm:text-xs text-gray-300 uppercase tracking-wider mt-1">Jam</span>
+        </div>
+        <div class="glass-card rounded-2xl p-3 sm:p-4 flex flex-col items-center">
+          <span id="minutes" class="font-serif text-2xl sm:text-4xl font-bold text-softpink">00</span>
+          <span class="text-[10px] sm:text-xs text-gray-300 uppercase tracking-wider mt-1">Menit</span>
+        </div>
+        <div class="glass-card rounded-2xl p-3 sm:p-4 flex flex-col items-center">
+          <span id="seconds" class="font-serif text-2xl sm:text-4xl font-bold text-softpink">00</span>
+          <span class="text-[10px] sm:text-xs text-gray-300 uppercase tracking-wider mt-1">Detik</span>
+        </div>
+      </div>
+
+      <!-- Action Button -->
+      <button onclick="goToSection(2)" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-darkmagenta transition-all duration-300 bg-gradient-to-r from-rosegold via-softpink to-rosegold bg-[length:200%_auto] rounded-full shadow-lg hover:bg-right focus:outline-none hover:scale-105 active:scale-95">
+        <span class="flex items-center gap-2 text-darkmagenta font-bold text-sm md:text-base">
+          OPEN HER GIFT 🎁
+          <i class="fa-solid fa-heart transition-transform group-hover:scale-125 text-deeprose"></i>
+        </span>
+      </button>
+    </section>
+
+    <!-- SEKSI 2: INTERACTIVE GIFT BOX -->
+    <section id="section-2" class="w-full flex flex-col items-center text-center hidden transition-all duration-700">
+      <h2 class="font-cute text-3xl sm:text-4xl text-blushpink mb-2 glow-text">
+        Ada Hadiah Spesial! 🎁
+      </h2>
+      <p class="text-xs sm:text-sm text-gray-200 mb-8 font-light">
+        Ketuk atau klik kado manis di bawah ini untuk membukanya yangg! ✨
+      </p>
+
+      <!-- Cute Gift Container -->
+      <div onclick="openGift()" class="gift-float cursor-pointer relative group my-6 p-4">
+        <div class="absolute -inset-4 bg-gradient-to-r from-softpink via-rosegold to-blushpink rounded-full blur-2xl opacity-50 group-hover:opacity-90 transition duration-500"></div>
+        
+        <!-- Box SVG Container -->
+        <div class="relative w-40 h-40 md:w-48 md:h-48 flex items-center justify-center bg-gradient-to-tr from-rosegold via-softpink to-blushpink rounded-3xl shadow-2xl border-2 border-white/50">
+          <i class="fa-solid fa-gift text-6xl md:text-7xl text-darkmagenta drop-shadow-md"></i>
+          <!-- Pita Hiasan -->
+          <div class="absolute inset-y-0 w-8 bg-white/40 backdrop-blur-sm"></div>
+          <div class="absolute inset-x-0 h-8 bg-white/40 backdrop-blur-sm"></div>
+        </div>
+      </div>
+
+      <p class="text-xs text-softpink font-medium animate-pulse mt-4">
+        <i class="fa-solid fa-hand-pointer mr-1"></i> Klik untuk membuka ucapan dari Adi
+      </p>
+    </section>
+
+    <!-- SEKSI 3: LOVE LETTER WITH TYPEWRITER EFFECT -->
+    <section id="section-3" class="w-full flex flex-col items-center hidden transition-all duration-700">
+      <div class="text-center mb-6">
+        <h2 class="font-cute text-3xl sm:text-4xl text-blushpink mb-1 glow-text">
+          Your Special Day 💌
+        </h2>
+        <p class="text-xs sm:text-sm text-softpink font-cursive text-xl">
+          A sweet letter written with love by Adi for Nandia Della Putri ❤️
+        </p>
+      </div>
+
+      <!-- Trigger Button -->
+      <div id="letterTrigger" class="mb-6">
+        <button onclick="startTypewriter()" class="px-7 py-3 bg-gradient-to-r from-softpink to-rosegold text-darkmagenta font-bold rounded-full shadow-lg hover:scale-105 active:scale-95 transition">
+          READ MY LETTER 💌
+        </button>
+      </div>
+
+      <!-- Love Letter Glass Card -->
+      <div id="letterCard" class="glass-card w-full max-w-xl rounded-3xl p-6 sm:p-8 text-left relative border border-white/30 hidden">
+        <div class="flex items-center justify-between mb-4 border-b border-softpink/30 pb-3">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-heart text-softpink text-lg animate-pulse"></i>
+            <span class="font-serif font-bold text-sm sm:text-base text-blushpink">To: Nandia Della Putri</span>
+          </div>
+          <span class="text-xs text-softpink/90 font-mono">Selasa, 27 Oktober</span>
+        </div>
+
+        <!-- Typewriter Container -->
+        <div class="text-xs sm:text-sm md:text-base leading-relaxed text-gray-100 font-sans whitespace-pre-line min-h-[200px]" id="typewriterText"></div>
+
+        <div class="mt-8 pt-4 border-t border-softpink/30 flex justify-between items-center">
+          <span class="font-cursive text-2xl text-softpink font-bold">Forever yours, Adi ❤️</span>
+          <button onclick="goToSection(4)" class="px-5 py-2.5 bg-gradient-to-r from-softpink to-rosegold text-darkmagenta font-bold rounded-full text-xs sm:text-sm hover:scale-105 active:scale-95 transition flex items-center gap-2 shadow">
+            OUR MEMORIES 📸
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEKSI 4: OUR MEMORIES (3 POLAROID CARDS ONLY) -->
+<section id="section-4" class="w-full flex flex-col items-center hidden transition-all duration-700">
+  <div class="text-center mb-8">
+    <h2 class="font-cute text-3xl sm:text-4xl text-blushpink mb-1 glow-text">
+      Our Precious Memories 🌸
+    </h2>
+    <p class="text-xs sm:text-sm text-softpink font-light">
+      Setiap momen manis bersama Nandia yang paling berharga ✨
+    </p>
+  </div>
+
+  <!-- Exactly 3 Polaroid Cards Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-2xl mb-8">
+    
+    <!-- Polaroid Card 1 -->
+    <div onclick="openLightbox('image/1.jpg', 'Senyuman Manismu 💖')" class="polaroid transform -rotate-3 cursor-pointer rounded-sm">
+      <div class="w-full h-48 sm:h-44 bg-gray-100 overflow-hidden rounded-sm">
+        <img src="image/1.jpg" alt="Foto Memory 1" class="w-full h-full object-cover">
+      </div>
+      <p class="font-cursive text-gray-800 text-center text-lg mt-3 font-bold truncate">Senyuman Manismu 💖</p>
+    </div>
+
+    <!-- Polaroid Card 2 -->
+    <div onclick="openLightbox('image/2.jpg', 'Always Together ✨')" class="polaroid transform rotate-2 cursor-pointer rounded-sm">
+      <div class="w-full h-48 sm:h-44 bg-gray-100 overflow-hidden rounded-sm">
+        <img src="image/2.jpg" alt="Foto Memory 2" class="w-full h-full object-cover">
+      </div>
+      <p class="font-cursive text-gray-800 text-center text-lg mt-3 font-bold truncate">Selalu Bersama ✨</p>
+    </div>
+
+    <!-- Polaroid Card 3 -->
+    <div onclick="openLightbox('image/3.jpg', 'My Special Person 🌹')" class="polaroid transform -rotate-2 cursor-pointer rounded-sm">
+      <div class="w-full h-48 sm:h-44 bg-gray-100 overflow-hidden rounded-sm">
+        <img src="image/3.jpg" alt="Foto Memory 3" class="w-full h-full object-cover">
+      </div>
+      <p class="font-cursive text-gray-800 text-center text-lg mt-3 font-bold truncate">Moment Indah Kita 🌹</p>
+    </div>
+
+  </div>
+
+      <button onclick="goToSection(5)" class="px-8 py-3.5 bg-gradient-to-r from-softpink via-rosegold to-softpink text-darkmagenta font-bold rounded-full shadow-lg hover:scale-105 active:scale-95 transition flex items-center gap-2">
+        SPECIAL WISHES ✨
+      </button>
+    </section>
+
+    <!-- SEKSI 5: BIRTHDAY WISHES & CLOSING -->
+    <section id="section-5" class="w-full flex flex-col items-center text-center hidden transition-all duration-700">
+      <div class="glass-card rounded-3xl p-8 sm:p-10 border border-white/30 w-full max-w-lg flex flex-col items-center">
+        <div class="w-20 h-20 bg-softpink/20 rounded-full flex items-center justify-center text-softpink text-4xl mb-4 border border-softpink/40 animate-bounce">
+          💖
+        </div>
+        
+        <h2 class="font-cute text-3xl sm:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-blushpink to-softpink mb-4 glow-text">
+          Happy Birthday, Nandia Della Putri! 🎂
+        </h2>
+
+        <p class="text-sm sm:text-base text-gray-100 leading-relaxed font-light mb-6">
+          "Happy birthday, cayanggkuu, Nandia Della Putriii. ❤️🎂
+
+Semoga di usia camu yang baru ini, Allah selalu melindungi camu, melimpahkan kebahagiaan, kesehatan, rezeki yang berkah, dan memudahkan setiap langkah camu dalam meraih impian. Semangat terus menjalani hari-harinya yaa, sayangg. Jangan terlalu keras sama diri sendiri, acu harap camu selalu punya alasan untuk tersenyum dan tetap kuat menghadapi apa pun. Semoga semua doa baik camu Allah kabulkan di waktu yang paling indah. Aamiin ya Rabbal 'alamiin. 🤍
+
+Dan semoga kita bisa terus menciptakan banyak kenangan indah, saling menguatkan, dan sama-sama berjuang menjadi pribadi yang lebih baik. Acu sayanggg banget sama camuuu. Semoga hal-hal baik selalu menemukan camu, hari ini dan seterusnya. 💗🫂! I'm always here for you yangg."
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 w-full justify-center mt-2">
+          <button onclick="goToSection(1)" class="w-full sm:w-auto px-7 py-3 bg-gradient-to-r from-softpink to-rosegold text-darkmagenta font-bold rounded-full shadow-lg hover:scale-105 active:scale-95 transition flex items-center justify-center gap-2">
+            REPLAY FROM START 🔄
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- LIGHTBOX MODAL FOR POLAROID PHOTOS -->
+  <div id="lightbox" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4" onclick="closeLightbox()">
+    <div class="relative max-w-md w-full bg-white p-4 pb-6 rounded-sm shadow-2xl flex flex-col items-center" onclick="event.stopPropagation()">
+      <button onclick="closeLightbox()" class="absolute -top-10 right-0 text-white text-2xl hover:text-softpink">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <img id="lightboxImg" src="" alt="Enlarged Memory" class="w-full h-auto max-h-[65vh] object-cover rounded-sm mb-4">
+      <p id="lightboxCaption" class="font-cursive text-gray-800 text-xl font-bold text-center"></p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="w-full py-4 text-center text-xs text-softpink/80 z-10 font-light">
+    Crafted with ❤️ by Adi for Nandia Della Putri • Tuesday, 27 October
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // --- 1. AUDIO CONTROLLER ---
+    const bgMusic = document.getElementById('bgMusic');
+    const musicIcon = document.getElementById('musicIcon');
+    const musicText = document.getElementById('musicText');
+    let isPlaying = false;
+
+    function toggleAudio() {
+      if (isPlaying) {
+        bgMusic.pause();
+        musicIcon.classList.remove('spin-slow', 'fa-compact-disc');
+        musicIcon.classList.add('fa-music');
+        musicText.innerText = 'Play Music 🎵';
+        isPlaying = false;
+      } else {
+        bgMusic.play().then(() => {
+          musicIcon.classList.remove('fa-music');
+          musicIcon.classList.add('fa-compact-disc', 'spin-slow');
+          musicText.innerText = 'Playing 💕';
+          isPlaying = true;
+        }).catch(e => {
+          console.log("Audio autoplay interrupted: ", e);
+        });
+      }
+    }
+
+    // --- 2. SECTION NAVIGATION ---
+    function goToSection(sectionNumber) {
+      if (!isPlaying && sectionNumber > 1) {
+        toggleAudio();
+      }
+
+      for (let i = 1; i <= 5; i++) {
+        const sec = document.getElementById(`section-${i}`);
+        if (sec) {
+          if (i === sectionNumber) {
+            sec.classList.remove('hidden');
+            sec.classList.add('flex');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          } else {
+            sec.classList.add('hidden');
+            sec.classList.remove('flex');
+          }
+        }
+      }
+    }
+
+    // --- 3. COUNTDOWN TIMER ---
+    // Target: Selasa, 27 Oktober (00:00:00)
+    function updateCountdown() {
+      const now = new Date();
+      let targetYear = now.getFullYear();
+      
+      // Target tanggal 27 Oktober
+      let targetDate = new Date(targetYear, 9, 27, 0, 0, 0); // Bulan 9 = Oktober (0-indexed)
+
+      if (now > targetDate && now.getDate() !== 27) {
+        targetDate = new Date(targetYear + 1, 9, 27, 0, 0, 0);
+      }
+
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        document.getElementById('days').innerText = '00';
+        document.getElementById('hours').innerText = '00';
+        document.getElementById('minutes').innerText = '00';
+        document.getElementById('seconds').innerText = '00';
+        return;
+      }
+
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('days').innerText = d < 10 ? '0' + d : d;
+      document.getElementById('hours').innerText = h < 10 ? '0' + h : h;
+      document.getElementById('minutes').innerText = m < 10 ? '0' + m : m;
+      document.getElementById('seconds').innerText = s < 10 ? '0' + s : s;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // --- 4. GIFT BOX OPENING & SPARKLES ---
+    function openGift() {
+      createBurstEffect();
+      setTimeout(() => {
+        goToSection(3);
+      }, 600);
+    }
+
+    function createBurstEffect() {
+      for (let i = 0; i < 25; i++) {
+        const heart = document.createElement('div');
+        heart.innerHTML = Math.random() > 0.5 ? '💖' : '🌸';
+        heart.style.position = 'fixed';
+        heart.style.left = '50%';
+        heart.style.top = '50%';
+        heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+        heart.style.zIndex = '9999';
+        heart.style.pointerEvents = 'none';
+        heart.style.transform = `translate(-50%, -50%) translate(${(Math.random() - 0.5) * 280}px, ${(Math.random() - 0.5) * 280}px)`;
+        heart.style.transition = 'all 0.8s ease-out';
+        heart.style.opacity = '1';
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.style.opacity = '0';
+          setTimeout(() => heart.remove(), 800);
+        }, 100);
+      }
+    }
+
+    // --- 5. TYPEWRITER EFFECT FOR LOVE LETTER ---
+    const letterText = `Selamat ulang tahun untuk cayanggkuhhhhh, Nandia Della Putri! ❤️
+
+Selamat ulang tahun yaa, cayanggkuu, Nandia Della Putriii. ❤️🎂💗
+
+Happy birthday, perempuan cantik yang sangat acu sayanggg. Hari ini adalah hari spesial untuk seseorang yang sekarang punya tempat tersendiri di hati acu. Seseorang yang awalnya acu kenal dari sebuah DM sederhana, tapi ternyata kehadirannya bisa menjadi sespesial ini dalam hidup acu. 🥹💗
+
+Sayangg, kalau kita ingat-ingat lagi, kita pertama kali DM dan mulai kenal dekat itu pada tanggal 21 Februari 2026. Rasanya masih nggak nyangka yaa, dari yang awalnya cuma kenal biasa, ngobrol, dan sering mabar, ternyata sekarang kita bisa sedekat ini. Awalnya mungkin kita cuma fokus main bareng, tapi lama-kelamaan acu mulai mencari topik obrolan lain supaya kita bisa ngobrol lebih lama, bukan cuma soal mabar. Dan ternyata camu juga mulai mencari topik obrolan buat kita bicarakan. Dari situ, kita jadi semakin sering cerita, semakin nyaman, dan semakin mengenal satu sama lain. Hal kecil yang mungkin awalnya nggak pernah kita rencanakan, tapi sekarang justru menjadi salah satu hal yang acu syukuri. ❤️
+
+Seiring berjalannya waktu, kita mulai berbagi cerita yang lebih dalam, termasuk tentang masa lalu kita masing-masing. Kita mulai menceritakan hal-hal yang mungkin nggak mudah untuk diceritakan kepada orang lain. Kita belajar memahami luka, pengalaman, dan hal-hal yang pernah membuat kita sedih. Acu senang karena kita bisa sampai di titik ini, titik di mana kita bisa saling mendengarkan, saling memahami, dan insyaaAllah sudah mulai berdamai dengan masa lalu kita masing-masing.
+
+Acu berharap, masa lalu itu cukup menjadi bagian dari cerita yang membentuk kita menjadi pribadi yang lebih baik, bukan sesuatu yang terus membuat kita takut untuk bahagia di masa sekarang. Kita memang punya cerita masing-masing sebelum bertemu, tapi semoga ke depannya kita bisa menciptakan lebih banyak cerita baru yang jauh lebih indah. Nggak harus selalu sempurna, nggak harus selalu bahagia setiap saat, tapi acu ingin kita bisa saling menguatkan ketika salah satu dari kita sedang nggak baik-baik saja. 🫂🤍
+
+Sayangg, ada satu hal yang benar-benar ingin acu sampaikan di hari spesial camu ini. Acu ingin sekali mencintai camu dengan lebih serius. Bukan cuma sekadar hadir ketika kita sedang bahagia, bukan cuma menemani ketika semuanya terasa mudah, tapi acu ingin belajar menjadi seseorang yang bisa camu percaya, seseorang yang berusaha memberikan rasa aman, dan seseorang yang mau berjuang bersama camu untuk membangun hubungan yang lebih baik.
+
+Acu ingin kita punya banyak momen berharga bersama. Kita bisa tertawa karena hal-hal sederhana, mencoba hal-hal baru, pergi bermain bersama, mengabadikan momen-momen kecil, dan suatu hari nanti melihat kembali semua kenangan itu sambil tersenyum karena ternyata kita sudah melewati banyak hal bersama. Acu ingin menciptakan kenangan yang bukan cuma menyenangkan untuk diingat, tapi juga menjadi bukti bahwa kita pernah berusaha membahagiakan satu sama lain dengan sungguh-sungguh.
+
+Acu nggak bisa menjanjikan bahwa acu akan selalu sempurna, karena acu juga masih banyak belajar dan memperbaiki diri. Tapi acu ingin terus berusaha menjadi lebih baik, belajar memahami camu, belajar menjaga perasaan camu, dan belajar mencintai camu dengan cara yang benar. Acu ingin keseriusan acu nggak cuma terlihat dari kata-kata manis, tapi juga dari usaha, sikap, tanggung jawab, dan tindakan nyata acu ke depannya.
+
+Acu sangatt mencintai camuuu, sangatt sayangg banget sama camuuu. Kadang mungkin acu nggak selalu pandai menyampaikan semuanya dengan kata-kata, tapi bukan berarti rasa sayang acu sedikit. Justru ada banyak hal yang ingin acu usahakan untuk camu, banyak doa yang acu selipkan untuk camu, dan banyak harapan baik yang acu inginkan untuk kehidupan camu. Acu ingin melihat camu bahagia, melihat camu tersenyum dengan tulus, dan melihat camu semakin dekat dengan semua hal baik yang camu impikan. ❤️🥹
+
+Oh iyaaa, sayanggkuu, soal kado ulang tahun camuuu, maaf yaa kalau kadonya sedikit menyusul dan nggak semuanya bisa acu berikan tepat di hari ulang tahun camu. Jangan sedih atau kecewa dulu yaa, yangg. Masih ada beberapa hal yang harus acu persiapkan supaya semuanya bisa acu berikan dengan baik. Jadi, acu mohon camu bersabar sedikit lagi yaa, sayangg. InsyaaAllah beberapa hari ke depan akan ada kado lainnya yang menyusul untuk camuuu. 🎁💗
+
+Tapi ada satu hal yang ingin acu ceritakan sekarang, dan yang ini bukan sekadar kejutan biasa. Acu ingin camu tahu kalau selama ini acu juga sudah berikhtiar dan berusaha mempersiapkan sesuatu dari tabungan yang acu punya. Alhamdulillah, acu juga sudah mulai menginvestasikan uang acu dalam bentuk emas. Untuk sukunya, masih menjadi rahasia dulu yaa, sayangg. Hehehe, yang itu belum boleh acu kasih tahu sekarang. 🤭❤️
+
+Kenapa acu cerita hal ini ke camu? Karena menurut acu, hal ini bukan sesuatu yang perlu acu rahasiakan dari camu. Acu ingin camu tahu bahwa acu benar-benar berusaha dan mempersiapkan semuanya dengan sungguh-sungguh, sesuai kemampuan yang acu punya sekarang. Bagi acu, camu berhak mengetahui hal yang sepenting ini karena acu nggak ingin keseriusan acu hanya menjadi sesuatu yang camu dengar dari ucapan acu saja. Acu ingin camu juga tahu proses dan ikhtiar yang sedang acu jalani.
+
+Dan untuk hal ini, yang sudah mengetahui baru camu, acu, Mama, dan Papa saja yaa, sayangg. Jadi, acu berharap kita bisa sama-sama menjaga cerita ini dulu. Bukan karena acu ingin menyembunyikan sesuatu dari orang lain tanpa alasan, tetapi karena ini merupakan bagian dari persiapan yang masih ingin acu jaga sampai waktunya tiba. Acu percaya, ada beberapa hal yang memang lebih baik kita simpan dengan baik sampai semuanya siap untuk diceritakan. 🤍
+
+Acu juga ingin camu tahu bahwa acu nggak menceritakan ini untuk membuat camu merasa punya kewajiban membalas sesuatu atau merasa terbebani dengan apa yang acu persiapkan. Sama sekali bukan itu, sayangg. Acu melakukan semuanya karena memang acu ingin berusaha, ingin mempersiapkan sesuatu yang bermakna, dan ingin menunjukkan rasa sayang acu lewat usaha yang nyata. Acu hanya berharap, ketika waktunya tiba, camu bisa menerima semuanya dengan senang hati dan memahami niat baik di baliknya.
+
+Maaf yaa, sayanggkuu, kadonya nyusul dulu. Acu masih harus mempersiapkan beberapa hal lagi. Nanti kita main lagi yaa, kita bikin momen-momen baru lagi, tertawa bareng lagi, dan menghabiskan waktu bersama dengan bahagia. Acu sudah punya beberapa hal yang ingin acu lakukan bersama camu, tapi untuk kejutan-kejutan lainnya, acu rahasiakan dulu deh. Hehehe. Kalau semuanya acu kasih tahu sekarang, nanti nggak ada kejutan lagi donggg. 🤭🎁💗
+
+Tapi satu hal yang perlu camu tahu, acu nggak mau membiasakan diri merahasiakan sesuatu dari camu kalau memang hal itu penting dan menyangkut keseriusan kita. Kalau ada hal yang menurut acu perlu camu ketahui, acu ingin belajar terbuka dan membicarakannya dengan camu. Acu ingin kita bisa membangun kepercayaan satu sama lain, bukan cuma melalui kata-kata, tetapi juga melalui kejujuran, keterbukaan, dan cara kita saling menghargai.
+
+Sekarang, di hari bertambahnya usia camu, acu berdoa semoga Allah selalu menjaga camu di mana pun camu berada. Semoga Allah memberikan camu kesehatan, umur yang berkah, hati yang tenang, rezeki yang halal dan luas, serta kebahagiaan yang nggak hanya datang sesaat, tetapi juga tumbuh dalam kehidupan camu setiap harinya. Semoga segala urusan camu dimudahkan, segala usaha camu diberikan hasil yang baik, dan segala doa yang selama ini camu simpan dalam hati bisa Allah kabulkan pada waktu yang paling tepat. Aamiin ya Rabbal 'alamiin. 🤲🏻🤍
+
+Acu juga berdoa semoga camu selalu diberikan kekuatan ketika menghadapi hari-hari yang berat. Kalau suatu saat camu merasa capek, sedih, bingung, atau merasa semuanya nggak berjalan sesuai harapan, acu harap camu nggak menyerah sama diri camu sendiri yaa, sayangg. Istirahat kalau memang capek, menangis kalau memang perlu, dan kasih waktu untuk diri camu sendiri kalau keadaan terasa terlalu berat. Camu nggak harus selalu terlihat kuat setiap saat. Camu juga manusia yang boleh merasa lelah dan butuh waktu untuk kembali semangat.
+
+Tetap semangat menjalani hari-hari camu yaa, cayanggkuu. Semangat untuk semua aktivitas camu, semangat mengejar impian camu, semangat memperbaiki diri, dan semangat untuk terus menjadi pribadi yang lebih baik dari hari ke hari. Jangan terlalu keras sama diri sendiri kalau ada sesuatu yang belum berhasil. Nggak semua hal harus selesai hari ini, dan nggak semua rencana harus berjalan sesuai keinginan kita. Pelan-pelan saja, yang penting camu tetap berusaha dan nggak kehilangan harapan. Acu percaya camu punya kemampuan untuk melewati banyak hal, dan acu berharap camu selalu ingat bahwa diri camu juga berharga, bahkan ketika camu sedang merasa kurang baik-baik saja. ❤️
+
+Semoga di usia yang baru ini, camu semakin banyak menemukan alasan untuk bersyukur. Semoga camu dikelilingi orang-orang yang tulus, dijauhkan dari hal-hal yang membawa keburukan, diberikan lingkungan yang baik, dan dipertemukan dengan banyak kesempatan yang membawa camu menuju kehidupan yang lebih baik. Semoga Allah menjaga hati camu, menjaga langkah camu, dan membimbing camu supaya selalu berada di jalan yang diridai-Nya.
+
+Dan untuk kita berdua, acu berharap semoga Allah selalu membimbing niat baik kita. Semoga apa yang sedang kita usahakan bisa membawa kebaikan, bukan hanya untuk hari ini, tetapi juga untuk masa depan. Semoga kita bisa saling mendukung tanpa saling membebani, saling mengingatkan tanpa saling menyakiti, dan saling menyayangi dengan cara yang baik. Kalau memang Allah mengizinkan kita untuk melangkah lebih jauh bersama, semoga Allah mudahkan jalannya, kuatkan niat kita, dan berkahi setiap proses yang kita jalani. Acu ingin semua yang baik ini kita usahakan dengan sabar, sungguh-sungguh, dan tetap melibatkan Allah dalam setiap langkahnya. Aamiin. 🤍
+
+Sekali lagi, selamat ulang tahun yaa, Nandia Della Putriii, perempuan yang sangat acu sayanggg. Terima kasih sudah hadir dalam cerita hidup acu, terima kasih sudah mau mengenal acu lebih dekat, terima kasih sudah berbagi banyak cerita, dan terima kasih karena sampai hari ini kita masih bisa saling mengenal dan memahami satu sama lain.
+
+Acu nggak tahu akan ada berapa banyak cerita yang menunggu kita di depan sana, tapi acu berharap kita bisa menghadapinya dengan hati yang baik, komunikasi yang jujur, dan usaha yang sungguh-sungguh. Semoga suatu hari nanti kita bisa melihat kembali perjalanan dari DM pertama tanggal 21 Februari 2026 itu dan tersenyum karena ternyata dari awal yang sederhana, ada begitu banyak hal indah yang bisa kita pelajari dan syukuri.
+
+Jangan lupa bahagia yaa, sayangg. Jangan lupa jaga kesehatan, jaga diri baik-baik, makan teratur, istirahat yang cukup, dan jangan terlalu sering memendam semuanya sendirian. Kalau ada sesuatu yang ingin camu ceritakan, acu berharap kita bisa terus belajar saling mendengarkan dan memahami. Semoga hari-hari camu ke depannya dipenuhi lebih banyak senyuman daripada kesedihan, lebih banyak ketenangan daripada kekhawatiran, dan lebih banyak kabar baik daripada hal-hal yang membuat camu kecewa.
+
+Acu sayangg banget sama camuuu, lebih dari yang bisa acu jelaskan lewat surat ini. ❤️🥹💗
+
+Happy birthday, my favorite person. Semoga usia baru ini menjadi awal dari banyak hal baik dalam kehidupan camu. Tetap jadi Nandia yang acu kenal, tetap bertumbuh, tetap semangat, dan jangan pernah berhenti memperjuangkan hal-hal baik yang camu impikan.
+
+Sekali lagi, selamat ulang tahun yaa, cayanggkuu. Semoga Allah selalu menjaga camu, hari ini, besok, dan di setiap langkah kehidupan camu.
+
+With all my love and prayers,
+— Acu, yang sayang banget sama camuuu. ❤️💗🫂
+
+With all my love,
+— Adi`;
+
+    let typewriterIndex = 0;
+    let isTyping = false;
+
+    function startTypewriter() {
+      document.getElementById('letterTrigger').classList.add('hidden');
+      document.getElementById('letterCard').classList.remove('hidden');
+
+      if (!isTyping) {
+        isTyping = true;
+        document.getElementById('typewriterText').innerHTML = '';
+        typeWriter();
+      }
+    }
+
+    function typeWriter() {
+      if (typewriterIndex < letterText.length) {
+        document.getElementById('typewriterText').innerHTML += letterText.charAt(typewriterIndex);
+        typewriterIndex++;
+        setTimeout(typeWriter, 35);
+      }
+    }
+
+    // --- 6. LIGHTBOX MODAL ---
+    function openLightbox(src, caption) {
+      const imgElem = document.getElementById('lightboxImg');
+      imgElem.src = src;
+      // Fallback if local image fails
+      imgElem.onerror = function() {
+        this.src = 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80';
+      };
+      document.getElementById('lightboxCaption').innerText = caption;
+      document.getElementById('lightbox').classList.remove('hidden');
+      document.getElementById('lightbox').classList.add('flex');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.add('hidden');
+      document.getElementById('lightbox').classList.remove('flex');
+    }
+
+    // --- 7. FLOATING HEART PARTICLES CANVAS ---
+    const canvas = document.getElementById('particles-canvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    const particles = [];
+    const particleCount = 30;
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = canvas.height + Math.random() * 80;
+        this.size = Math.random() * 12 + 10;
+        this.speedY = Math.random() * 1 + 0.6;
+        this.speedX = (Math.random() - 0.5) * 0.4;
+        this.opacity = Math.random() * 0.6 + 0.3;
+        this.icon = ['🌸', '💖', '✨', '💕'][Math.floor(Math.random() * 4)];
+      }
+
+      update() {
+        this.y -= this.speedY;
+        this.x += this.speedX;
+        if (this.y < -30) {
+          this.reset();
+        }
+      }
+
+      draw() {
+        ctx.save();
+        ctx.globalAlpha = this.opacity;
+        ctx.font = `${this.size}px serif`;
+        ctx.fillText(this.icon, this.x, this.y);
+        ctx.restore();
+      }
+    }
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+  </script>
+</body>
+</html>
